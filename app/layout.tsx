@@ -7,8 +7,24 @@ import { Toaster } from '@/components/ui/sonner'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Frontend Documentation - Made Simple',
-  description: 'Create beautiful, interactive, and maintainable documentation for your frontend projects',
+  title: 'FrontLine - The most productive developers paradise',
+  description:
+    'Easy to follow and easier to copy utilities for web development',
+  metadataBase: new URL('https://frontline-nine.vercel.app'),
+  openGraph: {
+    title: 'FrontLine - FrontLine - The most productive developers paradise',
+    description:
+      'Easy to follow and easier to copy utilities for web development',
+    images: [
+      {
+        url: '/og-image.webp',
+        width: 1200,
+        height: 630,
+        alt: 'FrontLine - The most productive developers paradise',
+      },
+    ],
+    type: 'website',
+  },
 }
 
 export default function RootLayout({

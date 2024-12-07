@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import { CodeBlock } from '@/components/docs/code-block'
+import Section from '@/components/docs/section'
 
 export const metadata: Metadata = {
   title: 'Extras - Frontline Documentation',
@@ -12,7 +13,7 @@ export default function ExtrasPage() {
     <div className='space-y-6'>
       <h1 className='text-3xl font-bold tracking-tight'>Extras</h1>
 
-      <section id='offline-documentation'>
+      {/* <section id='offline-documentation'>
         <h2 className='text-2xl font-semibold mb-4'>Offline Documentation</h2>
         <p>
           To access Frontline documentation offline, you can clone our GitHub
@@ -78,9 +79,9 @@ npm run dev
           Once the server is running, you can access the documentation at{' '}
           <code>http://localhost:3000</code>.
         </p>
-      </section>
+      </section> */}
 
-      <section id='contributing'>
+      <Section sectionId='contributing' title='Contributing' groupId='extras'>
         <h2 className='text-2xl font-semibold mb-4'>
           Contributing to FrontLine
         </h2>
@@ -101,11 +102,9 @@ npm run dev
         </ol>
         <p className='mt-4'>
           Before submitting a pull request, please ensure that your code follows
-          our style guidelines and passes all tests. For more detailed
-          information on contributing, please read our CONTRIBUTING.md file in
-          the repository.
+          our style guidelines and passes all tests.
         </p>
-      </section>
+      </Section>
     </div>
   )
 }

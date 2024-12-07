@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import { CodeBlock } from '@/components/docs/code-block'
+import Section from '@/components/docs/section'
 
 export const metadata: Metadata = {
   title: 'Advanced Snippets - Frontline Documentation',
@@ -11,165 +12,86 @@ export default function AdvancedSnippetsPage() {
   return (
     <div className='space-y-6'>
       <h1 className='text-3xl font-bold tracking-tight'>Advanced Snippets</h1>
-
-      <section id='custom-hooks-react'>
-        <h2 className='text-2xl font-semibold mb-4'>Custom Hooks (React)</h2>
-        <p>Creating a custom hook for managing local storage:</p>
+      <Section
+        sectionId='optimized-fetch-with-abortcontroller'
+        title='Optimized Fetch with AbortController'
+        groupId='advanced-snippets'
+      >
+        <p>Using the AbortController API to cancel a fetch request after a delay:</p>
         <CodeBlock
           snippets={{
             JS: `
-import { useState, useEffect } from 'react';
+            const fetchWithAbort = (url) => {
+  const controller = new AbortController();
+  const signal = controller.signal;
 
-function useLocalStorage(key, initialValue) {
-  const [storedValue, setStoredValue] = useState(() => {
-    try {
-      const item = window.localStorage.getItem(key);
-      return item ? JSON.parse(item) : initialValue;
-    } catch (error) {
-      console.error(error);
-      return initialValue;
-    }
-  });
-
-  useEffect(() => {
-    try {
-      window.localStorage.setItem(key, JSON.stringify(storedValue));
-    } catch (error) {
-      console.error(error);
-    }
-  }, [key, storedValue]);
-
-  return [storedValue, setStoredValue];
-}
-
-// Usage
-function App() {
-  const [name, setName] = useLocalStorage('name', 'John Doe');
-
-  return (
-    <div>
-      <input
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-    </div>
-  );
-}
-          `,
-            TS: `
-import { useState, useEffect } from 'react';
-
-function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T) => void] {
-  const [storedValue, setStoredValue] = useState<T>(() => {
-    try {
-      const item = window.localStorage.getItem(key);
-      return item ? JSON.parse(item) : initialValue;
-    } catch (error) {
-      console.error(error);
-      return initialValue;
-    }
-  });
-
-  useEffect(() => {
-    try {
-      window.localStorage.setItem(key, JSON.stringify(storedValue));
-    } catch (error) {
-      console.error(error);
-    }
-  }, [key, storedValue]);
-
-  return [storedValue, setStoredValue];
-}
-
-// Usage
-function App() {
-  const [name, setName] = useLocalStorage<string>('name', 'John Doe');
-
-  return (
-    <div>
-      <input
-        type="text"
-        value={name}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
-      />
-    </div>
-  );
-}
-          `,
-            React: `
-import { useState, useEffect } from 'react';
-
-function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T) => void] {
-  const [storedValue, setStoredValue] = useState<T>(() => {
-    try {
-      const item = window.localStorage.getItem(key);
-      return item ? JSON.parse(item) : initialValue;
-    } catch (error) {
-      console.error(error);
-      return initialValue;
-    }
-  });
-
-  useEffect(() => {
-    try {
-      window.localStorage.setItem(key, JSON.stringify(storedValue));
-    } catch (error) {
-      console.error(error);
-    }
-  }, [key, storedValue]);
-
-  return [storedValue, setStoredValue];
-}
-
-// Usage
-function App() {
-  const [name, setName] = useLocalStorage<string>('name', 'John Doe');
-
-  return (
-    <div>
-      <input
-        type="text"
-        value={name}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
-      />
-    </div>
-  );
-}
-
-export default App;
-          `,
-            Svelte: `
-<script lang="ts">
-  import { writable } from 'svelte/store';
-
-  function createLocalStorage<T>(key: string, initialValue: T) {
-    const storedValue = localStorage.getItem(key);
-    const initial = storedValue ? JSON.parse(storedValue) : initialValue;
-    const store = writable<T>(initial);
-
-    store.subscribe(value => {
-      localStorage.setItem(key, JSON.stringify(value));
+  const fetchPromise = fetch(url, { signal })
+    .then(response => response.json())
+    .catch(err => {
+      if (err.name === 'AbortError') {
+        console.error('Fetch aborted');
+      } else {
+        console.error('Fetch error:', err);
+      }
     });
 
-    return store;
+  // Abort after 5 seconds
+  setTimeout(() => controller.abort(), 5000);
+
+  return fetchPromise;
+};
+
+// Usage
+fetchWithAbort('https://api.example.com/data')
+  .then(data => console.log(data));
+`,
+          }}
+        />
+      </Section>
+      <Section
+        groupId='advanced-snippets'
+        sectionId='error-boundary'
+        title='Error Boundary'
+      >
+        <p>Using the Error Boundary to catch and handle errors:</p>
+        <CodeBlock
+          snippets={{
+            React: `
+          class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
   }
 
-  const name = createLocalStorage('name', 'John Doe');
-</script>
+  static getDerivedStateFromError(error) {
+    // Update the state to show the fallback UI
+    return { hasError: true };
+  }
 
-<input
-  type="text"
-  bind:value={$name}
-/>
+  componentDidCatch(error, info) {
+    // You can register the error or send it to an error reporting service
+    console.error('Error capturado:', error, info);
+  }
 
-<p>Stored name: {$name}</p>
+  render() {
+    if (this.state.hasError) {
+      return <h1>Oops, something went wrong.</h1>; // UI fallback
+    }
+    return this.props.children;
+  }
+}
+
+// Uso
+const App = () => (
+  <ErrorBoundary>
+    <ComponentQuePuedeFallar />
+  </ErrorBoundary>
+);
+
           `,
           }}
         />
-      </section>
-
-      {/* Add more sections as needed */}
+      </Section>
     </div>
   )
 }

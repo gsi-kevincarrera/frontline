@@ -144,16 +144,12 @@ const navigation = [
     icon: Cpu,
     items: [
       {
-        title: 'Custom Hooks (React)',
-        href: '/docs/advanced-snippets#custom-hooks-react',
+        title: 'Optimized Fetch with AbortController',
+        href: '/docs/advanced-snippets#optimized-fetch-with-abortcontroller',
       },
       {
-        title: 'Vue Composables',
-        href: '/docs/advanced-snippets#vue-composables',
-      },
-      {
-        title: 'Handling Complex States',
-        href: '/docs/advanced-snippets#handling-complex-states',
+        title: 'Error Boundary',
+        href: '/docs/advanced-snippets#error-boundary',
       },
     ],
   },
@@ -161,10 +157,10 @@ const navigation = [
     title: 'Extras',
     icon: Plus,
     items: [
-      {
-        title: 'Offline Documentation',
-        href: '/docs/extras#offline-documentation',
-      },
+      // {
+      //   title: 'Offline Documentation',
+      //   href: '/docs/extras#offline-documentation',
+      // },
       { title: 'Contributing to FrontLine', href: '/docs/extras#contributing' },
     ],
   },

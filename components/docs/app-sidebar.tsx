@@ -2,18 +2,12 @@
 
 import {
   Book,
-  Code2,
   FileCode2,
-  Layers,
-  Settings,
-  Workflow,
   ChevronDown,
 } from 'lucide-react'
 import {
   Globe,
-  Lock,
   FileText,
-  Layout,
   Zap,
   Code,
   Cpu,
@@ -120,13 +114,17 @@ const navigation = [
         href: '/docs/performance-utilities#throttling',
       },
       {
-        title: 'Optimized API Calls',
-        href: '/docs/performance-utilities#optimized-api-calls',
+        title: 'Memoization',
+        href: '/docs/performance-utilities#memoization',
       },
       {
-        title: 'Lazy Loading Components',
-        href: '/docs/performance-utilities#lazy-loading-components',
+        title: 'Lazy Loading',
+        href: '/docs/performance-utilities#lazy-loading',
       },
+      {
+        title:'Image Optimization',
+        href: '/docs/performance-utilities#image-optimization',
+      }
     ],
   },
   {

@@ -181,7 +181,7 @@ export function AppSidebar() {
   const isActive = (href: string) => {
     const [path, hash] = href.split('#')
     if (pathname === path) {
-      if (hash && window) {
+      if (hash && typeof window !== 'undefined') {
         // If there's a hash, check if it matches the current hash
         return window.location.hash === `#${hash}`
       }

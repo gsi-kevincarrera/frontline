@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     'Easy to follow and easier to copy utilities for web development',
   metadataBase: new URL('https://frontline-nine.vercel.app'),
   openGraph: {
-    title: 'FrontLine - FrontLine - The most productive developers paradise',
+    title: 'FrontLine - The most productive developers paradise',
     description:
       'Easy to follow and easier to copy utilities for web development',
     images: [

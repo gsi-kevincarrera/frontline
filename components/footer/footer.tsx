@@ -36,8 +36,6 @@ export function Footer() {
             </p>
           </div>
           <FooterLinks title='Product' links={productLinks} />
-          <FooterLinks title='Resources' links={resourceLinks} />
-          <FooterLinks title='Company' links={companyLinks} />
         </div>
       </div>
     </footer>

@@ -30,7 +30,7 @@ export function Navbar() {
 
           <div className="hidden md:flex items-center space-x-8">
             <a href="#features" className="text-muted-foreground hover:text-primary transition-colors">Features</a>
-            <a href="/docs/general" className="text-muted-foreground hover:text-primary transition-colors">Get Started</a>
+            <a href="/docs/general" className="text-muted-foreground hover:text-primary transition-colors">Docs</a>
             <ThemeToggle />
           </div>
 
@@ -47,7 +47,7 @@ export function Navbar() {
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 bg-background/80 backdrop-blur-md border-b">
             <a href="#features" className="block px-3 py-2 text-base font-medium text-muted-foreground hover:text-primary">Features</a>
-            <a href="/docs/general" className="block px-3 py-2 text-base font-medium text-muted-foreground hover:text-primary">Get Started</a>
+            <a href="/docs/general" className="block px-3 py-2 text-base font-medium text-muted-foreground hover:text-primary">Docs</a>
           </div>
         </div>
       )}

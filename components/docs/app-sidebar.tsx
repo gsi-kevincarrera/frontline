@@ -133,7 +133,7 @@ const navigation = [
     items: [
       { title: 'Fetch Wrappers', href: '/docs/code-utilities#fetch-wrappers' },
       {
-        title: 'Error Handling Best Practices',
+        title: 'Error Handling',
         href: '/docs/code-utilities#error-handling',
       },
       { title: 'Axios Setup', href: '/docs/code-utilities#axios-setup' },

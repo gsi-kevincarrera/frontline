@@ -4,7 +4,7 @@ export default function Section({title, sectionId, groupId, children}: {
   title: string
   sectionId: string
   groupId: string
-  children: React.ReactNode
+  children?: React.ReactNode
 }) {
   return (
     <section id={sectionId}>

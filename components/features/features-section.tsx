@@ -1,7 +1,7 @@
 'use client'
 
 import { BookOpen, Code2, Palette, Puzzle, Search, Users } from 'lucide-react'
-import { FeatureCard } from './feature-card'
+import { FeatureCard } from './features-card'
 import { motion } from 'framer-motion'
 
 const features = [
